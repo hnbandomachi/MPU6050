@@ -1,18 +1,18 @@
-#define   ACCEL_XOUT_H    0x3B
-#define   ACCEL_XOUT_L    0x3C
-#define   ACCEL_YOUT_H    0x3D
-#define   ACCEL_YOUT_L    0x3E
-#define   ACCEL_ZOUT_H    0x3F
-#define   ACCEL_ZOUT_L    0x40
-#define   TEMP_OUT_H      0x41
-#define   TEMP_OUT_L      0x42
-#define   GYRO_XOUT_H     0x43
-#define   GYRO_XOUT_L     0x44
-#define   GYRO_YOUT_H     0x45
-#define   GYRO_YOUT_L     0x46
-#define   GYRO_ZOUT_H     0x47
-#define   GYRO_ZOUT_L     0x48
-#define   ADDR_MPU6050     0x68
+#define   ACCEL_XOUT_H    0x3B    // 59
+#define   ACCEL_XOUT_L    0x3C    // 60
+#define   ACCEL_YOUT_H    0x3D    // 61
+#define   ACCEL_YOUT_L    0x3E    // 62
+#define   ACCEL_ZOUT_H    0x3F    // 63
+#define   ACCEL_ZOUT_L    0x40    // 64
+#define   TEMP_OUT_H      0x41    // 65
+#define   TEMP_OUT_L      0x42    // 65
+#define   GYRO_XOUT_H     0x43    // 67
+#define   GYRO_XOUT_L     0x44    // 68
+#define   GYRO_YOUT_H     0x45    // 69
+#define   GYRO_YOUT_L     0x46    // 70
+#define   GYRO_ZOUT_H     0x47    // 71
+#define   GYRO_ZOUT_L     0x48    // 92
+#define   ADDR_MPU6050     0x68   // 104
 #include <Wire.h>
 void mpu6050()
 {
@@ -65,5 +65,3 @@ int16_t get_gyroz()
 {
   return getData_mpu6050(GYRO_ZOUT_H );
 }
-
-

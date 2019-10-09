@@ -1,14 +1,14 @@
-#include "mpu6050.h"
 #include <LiquidCrystal.h> 
+#include "mpu6050.h"
 
 // D4 --> D4
 // D5 --> D5
 // D6 --> D6
 // D7 --> D7
-// RS --> D8
-// E  --> D9
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
-int angle;
+// RS --> D2
+// E  --> D3
+LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
+int angleX, angleY, angleZ;
 void setup() {
   // put your setup code here, to run once:
    lcd.begin(16, 2);
@@ -18,16 +18,25 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  angle = map(get_accx(), -16384, 16384, -90, 90);
-  if(angle > 90 || angle < 0) {
-    angle = abs(angle);
-    if(angle > 90) angle = 180 - angle;
-  }
-  Serial.println(angle);    
+  angleX = map(get_accx(), -16384, 16384, -90, 90);
+  angleY = map(get_accy(), -16384, 16384, -90, 90);
+  angleZ = map(get_accz(), -16384, 16384, -90, 90);
+
+  Serial.print("angleX: ");
+  Serial.print(angleX);
+  Serial.print("angleY: ");
+  Serial.print(angleY);
+  Serial.print("angleZ: ");
+  Serial.println(angleZ);
+  
+  if(angleX > 90 || angleX < 0) {
+    angleX = abs(angleX);
+    if(angleX > 90) angleX = 180 - angleX;
+  }     
   lcd.setCursor(0, 0);    
-  lcd.print("Angle:");
+  lcd.print("angleX:");
   lcd.setCursor(7, 0);
-  lcd.print(angle);  
+  lcd.print(angleX);  
   delay(1000);
   lcd.clear();
 }
