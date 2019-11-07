@@ -1,13 +1,7 @@
 #include <LiquidCrystal.h> 
 #include "mpu6050.h"
 
-// D4 --> D4
-// D5 --> D5
-// D6 --> D6
-// D7 --> D7
-// RS --> D2
-// E  --> D3
-LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
+LiquidCrystal lcd(8, 7, 5, 4, 3, 2);
 int angleX, angleY, angleZ;
 void setup() {
   // put your setup code here, to run once:
@@ -22,21 +16,21 @@ void loop() {
   angleY = map(get_accy(), -16384, 16384, -90, 90);
   angleZ = map(get_accz(), -16384, 16384, -90, 90);
 
-  Serial.print("angleX: ");
+  Serial.print(" angleX: ");
   Serial.print(angleX);
-  Serial.print("angleY: ");
+  Serial.print(" angleY: ");
   Serial.print(angleY);
-  Serial.print("angleZ: ");
+  Serial.print(" angleZ: ");
   Serial.println(angleZ);
   
-  if(angleX > 90 || angleX < 0) {
-    angleX = abs(angleX);
-    if(angleX > 90) angleX = 180 - angleX;
+  if(angleY > 90 || angleY < 0) {
+    angleY = abs(angleX);
+    if(angleY > 90) angleY = 180 - angleX;
   }     
   lcd.setCursor(0, 0);    
-  lcd.print("angleX:");
+  lcd.print("angle: ");
   lcd.setCursor(7, 0);
-  lcd.print(angleX);  
+  lcd.print(angleY);  
   delay(1000);
   lcd.clear();
 }
